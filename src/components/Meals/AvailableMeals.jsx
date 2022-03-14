@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import styles from "./AvailableMeals.module.css";
 import MealItem from "./MealItem/MealItem";
+import SearchInput from "./SearchInput";
 
 function AvailableMeals() {
   const [meals, setMeals] = useState([]);
@@ -56,19 +57,7 @@ function AvailableMeals() {
 
   return (
     <section className={styles.meals}>
-      <Card>
-        <div className={styles.search}>
-          <input
-            type="text"
-            placeholder="Search for a food..."
-            onChange={searchChangeHandler}
-            value={keyword}
-          />
-          <button type="button" onClick={clearSearchHandler}>
-            Clear
-          </button>
-        </div>
-      </Card>
+      <SearchInput onChange={searchChangeHandler} onClear={clearSearchHandler} keyword={keyword}/>
       <Card>
         {!isLoading && !error && results.length > 0 && (
           <ul>
